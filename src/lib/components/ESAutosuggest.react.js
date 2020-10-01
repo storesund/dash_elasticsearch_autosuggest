@@ -140,10 +140,10 @@ export default class Autocomplete extends Component {
 
     onChange(event, {newValue}) {
         this.setState({value: newValue});
-        const payload = {
-            value: newValue,
-        };
-        this.props.setProps(payload);
+        // const payload = {
+        //     value: newValue,
+        // };
+        // this.props.setProps(payload);
     }
 
     /*

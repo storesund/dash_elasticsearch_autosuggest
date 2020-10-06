@@ -4774,6 +4774,8 @@ var Autocomplete = /*#__PURE__*/function (_Component) {
 
       if (this.state.value.includes(", ")) {
         prefix = this.state.value.substring(0, this.state.value.lastIndexOf(", ") + 2);
+      } else if (this.state.value.includes("\n")) {
+        prefix = this.state.value.substring(0, this.state.value.lastIndexOf("\n") + 1);
       } else {
         prefix = "";
       } // this.props.setProps({lastValueMeta: suggestion});
@@ -4792,7 +4794,8 @@ var Autocomplete = /*#__PURE__*/function (_Component) {
           autoFocus = _this$props.autoFocus,
           style = _this$props.style,
           spellCheck = _this$props.spellCheck,
-          inputType = _this$props.inputType;
+          inputType = _this$props.inputType,
+          textRows = _this$props.textRows;
       var inputProps = {
         placeholder: placeholder,
         value: value,
@@ -4802,9 +4805,9 @@ var Autocomplete = /*#__PURE__*/function (_Component) {
         autoComplete: "off",
         autoFocus: autoFocus,
         style: style,
-        spellCheck: spellCheck
+        spellCheck: spellCheck,
+        rows: textRows
       };
-      console.log(inputType);
 
       var renderInputComponent = function renderInputComponent(inputProps) {
         if (inputType === "input") {
@@ -4852,7 +4855,8 @@ Autocomplete.defaultProps = {
   searchField: "autocomplete",
   sectionOrder: [],
   debounceDelay: 100,
-  inputType: "input"
+  inputType: "input",
+  textRows: 1
 };
 Autocomplete.propTypes = {
   /**
@@ -4935,6 +4939,11 @@ Autocomplete.propTypes = {
    * Number of times the `Enter` key was pressed while the input had focus.
    */
   n_submit: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+
+  /**
+   * Number of rows for the textarea (if used)
+   */
+  textRows: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
 
   /**
    * Last time that `Enter` was pressed.

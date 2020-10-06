@@ -196,7 +196,9 @@ export default class Autocomplete extends Component {
     getSuggestionValue(suggestion) {
         const source = suggestion._source;
         let prefix = "";
-        if (this.state.value.includes(", ")) {
+        if (this.state.value.includes("\n")) {
+            prefix = this.state.value.substring(0, this.state.value.lastIndexOf("\n") + 1);
+        } else if (this.state.value.includes(", ")) {
             prefix = this.state.value.substring(0, this.state.value.lastIndexOf(", ") + 2);
         } else {
             prefix = "";
@@ -213,6 +215,7 @@ export default class Autocomplete extends Component {
             style,
             spellCheck,
             inputType,
+            textRows,
         } = this.props;
 
         const inputProps = {
@@ -224,22 +227,18 @@ export default class Autocomplete extends Component {
             autoComplete: "off",
             autoFocus: autoFocus,
             style: style,
-            spellCheck: spellCheck
+            spellCheck: spellCheck,
+            rows: textRows
         };
 
-        console.log(inputType)
         var renderInputComponent = inputProps => {
             if (inputType === "input") {
                 return (
-                    <div>
                     <input {...inputProps} />
-                    </div>
                 )
             } else {
                 return (
-                    <div>
                     <textarea {...inputProps} />
-                    </div>
                 )
             }
         };
@@ -279,7 +278,8 @@ Autocomplete.defaultProps = {
     searchField: "autocomplete",
     sectionOrder: [],
     debounceDelay: 100,
-    inputType: "input"
+    inputType: "input",
+    textRows: 1
 };
 
 Autocomplete.propTypes = {
@@ -364,14 +364,22 @@ Autocomplete.propTypes = {
      * Number of times the `Enter` key was pressed while the input had focus.
      */
     n_submit: PropTypes.number,
+
+    /**
+     * Number of rows for the textarea (if used)
+     */
+    textRows: PropTypes.number,
+
     /**
      * Last time that `Enter` was pressed.
      */
     n_submit_timestamp: PropTypes.number,
+
     /**
      * Username for Elasticsearch.
      */
     authUser: PropTypes.string,
+
     /**
      * Password for Elasticsearch.
      */

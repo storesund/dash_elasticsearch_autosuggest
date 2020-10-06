@@ -264,6 +264,17 @@
           "computed": false
         }
       },
+      "textRows": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Number of rows for the textarea (if used)",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
       "n_submit_timestamp": {
         "type": {
           "name": "number"

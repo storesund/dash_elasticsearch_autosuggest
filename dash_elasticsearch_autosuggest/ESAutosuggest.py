@@ -26,6 +26,7 @@ Keyword arguments:
 - suggestions (list; optional): Placeholder string
 - numSuggestions (number; optional): Number of suggestions to display
 - n_submit (number; default 0): Number of times the `Enter` key was pressed while the input had focus.
+- textRows (number; default 1): Number of rows for the textarea (if used)
 - n_submit_timestamp (number; default -1): Last time that `Enter` was pressed.
 - authUser (string; optional): Username for Elasticsearch.
 - authPass (string; optional): Password for Elasticsearch.
@@ -38,12 +39,12 @@ element's own spellcheck value. The value false indicates that the element shoul
 - sectionOrder (list; optional): Permanent ordering of sections/indexes in the results.
 - debounceDelay (number; default 100): Debounce delay in milliseconds."""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, inputType=Component.UNDEFINED, endpoint=Component.UNDEFINED, fields=Component.UNDEFINED, defaultField=Component.UNDEFINED, additionalField=Component.UNDEFINED, multiSection=Component.UNDEFINED, sectionMap=Component.UNDEFINED, lastValueMeta=Component.UNDEFINED, sort=Component.UNDEFINED, placeholder=Component.UNDEFINED, suggestions=Component.UNDEFINED, numSuggestions=Component.UNDEFINED, n_submit=Component.UNDEFINED, n_submit_timestamp=Component.UNDEFINED, authUser=Component.UNDEFINED, authPass=Component.UNDEFINED, searchField=Component.UNDEFINED, autoFocus=Component.UNDEFINED, spellCheck=Component.UNDEFINED, style=Component.UNDEFINED, sectionOrder=Component.UNDEFINED, debounceDelay=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'value', 'inputType', 'endpoint', 'fields', 'defaultField', 'additionalField', 'multiSection', 'sectionMap', 'lastValueMeta', 'sort', 'placeholder', 'suggestions', 'numSuggestions', 'n_submit', 'n_submit_timestamp', 'authUser', 'authPass', 'searchField', 'autoFocus', 'spellCheck', 'style', 'sectionOrder', 'debounceDelay']
+    def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, inputType=Component.UNDEFINED, endpoint=Component.UNDEFINED, fields=Component.UNDEFINED, defaultField=Component.UNDEFINED, additionalField=Component.UNDEFINED, multiSection=Component.UNDEFINED, sectionMap=Component.UNDEFINED, lastValueMeta=Component.UNDEFINED, sort=Component.UNDEFINED, placeholder=Component.UNDEFINED, suggestions=Component.UNDEFINED, numSuggestions=Component.UNDEFINED, n_submit=Component.UNDEFINED, textRows=Component.UNDEFINED, n_submit_timestamp=Component.UNDEFINED, authUser=Component.UNDEFINED, authPass=Component.UNDEFINED, searchField=Component.UNDEFINED, autoFocus=Component.UNDEFINED, spellCheck=Component.UNDEFINED, style=Component.UNDEFINED, sectionOrder=Component.UNDEFINED, debounceDelay=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'value', 'inputType', 'endpoint', 'fields', 'defaultField', 'additionalField', 'multiSection', 'sectionMap', 'lastValueMeta', 'sort', 'placeholder', 'suggestions', 'numSuggestions', 'n_submit', 'textRows', 'n_submit_timestamp', 'authUser', 'authPass', 'searchField', 'autoFocus', 'spellCheck', 'style', 'sectionOrder', 'debounceDelay']
         self._type = 'ESAutosuggest'
         self._namespace = 'dash_elasticsearch_autosuggest'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'value', 'inputType', 'endpoint', 'fields', 'defaultField', 'additionalField', 'multiSection', 'sectionMap', 'lastValueMeta', 'sort', 'placeholder', 'suggestions', 'numSuggestions', 'n_submit', 'n_submit_timestamp', 'authUser', 'authPass', 'searchField', 'autoFocus', 'spellCheck', 'style', 'sectionOrder', 'debounceDelay']
+        self.available_properties = ['id', 'value', 'inputType', 'endpoint', 'fields', 'defaultField', 'additionalField', 'multiSection', 'sectionMap', 'lastValueMeta', 'sort', 'placeholder', 'suggestions', 'numSuggestions', 'n_submit', 'textRows', 'n_submit_timestamp', 'authUser', 'authPass', 'searchField', 'autoFocus', 'spellCheck', 'style', 'sectionOrder', 'debounceDelay']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')

@@ -152,12 +152,17 @@ export default class Autocomplete extends Component {
     onSuggestionsFetchRequested({value}) {
         const config = {auth: {username: this.props.authUser, password: this.props.authPass},};
 
+        // console.log(value)
         let searchterm = '';
-        if (value.includes(", ")) {
+        if (value.includes("\n")) {
+            searchterm = value.substring(value.lastIndexOf("\n") + 1, value.length);
+            // console.log("NEWLINE DETECTED!")
+        } else if (value.includes(", ")) {
             searchterm = value.substring(value.lastIndexOf(", ") + 2, value.length);
         } else {
             searchterm = value;
         }
+        // console.log(searchterm)
         axios
             .post(this.props.endpoint, {
                 query: {
@@ -207,6 +212,7 @@ export default class Autocomplete extends Component {
             autoFocus,
             style,
             spellCheck,
+            inputType,
         } = this.props;
 
         const inputProps = {
@@ -221,6 +227,24 @@ export default class Autocomplete extends Component {
             spellCheck: spellCheck
         };
 
+        console.log(inputType)
+        var renderInputComponent = inputProps => {
+            if (inputType === "input") {
+                return (
+                    <div>
+                    <input {...inputProps} />
+                    </div>
+                )
+            } else {
+                return (
+                    <div>
+                    <textarea {...inputProps} />
+                    </div>
+                )
+            }
+        };
+        // console.log(renderInputComponent)
+
         return (
             <Autosuggest
                 suggestions={suggestions}
@@ -234,6 +258,7 @@ export default class Autocomplete extends Component {
                 inputProps={inputProps}
                 multiSection={true}
                 renderSectionTitle={this.renderSectionTitle}
+                renderInputComponent={renderInputComponent}
                 getSectionSuggestions={getSectionSuggestions}
             />
         )
@@ -253,7 +278,8 @@ Autocomplete.defaultProps = {
     sectionMap: {},
     searchField: "autocomplete",
     sectionOrder: [],
-    debounceDelay: 100
+    debounceDelay: 100,
+    inputType: "input"
 };
 
 Autocomplete.propTypes = {
@@ -266,6 +292,12 @@ Autocomplete.propTypes = {
      * The value displayed in the input
      */
     value: PropTypes.string,
+
+    /**
+     * The type of input element
+     */
+    inputType: PropTypes.string,
+
 
     /**
      * Dash-assigned callback that should be called whenever any of the

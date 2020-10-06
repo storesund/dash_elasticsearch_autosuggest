@@ -1,4 +1,4 @@
-import dash_elasticsearch_autosuggest
+from dash_elasticsearch_autosuggest import ESAutosuggest
 import dash
 from dash.dependencies import Input, Output
 import dash_html_components as html
@@ -8,22 +8,23 @@ app = dash.Dash(__name__)
 app.scripts.config.serve_locally = True
 app.css.config.serve_locally = True
 
-fields=["original", "normalized"]
+# fields=["original", "normalized"]
 
 app.layout = html.Div([
-    dash_elasticsearch_autosuggest.ESAutosuggest(
+    ESAutosuggest(
         id='input',
         value='',
-        endpoint='...',
-        fields=fields,
-        defaultField=fields[0],
-        addtionalField=None,
+        endpoint='http://localhost:9200/_search',
+        # fields=fields,
+        defaultField="autocomplete",
+        additionalField=None,
         sort=["_score"],
         placeholder='',
-        suggestions=[], 
-        authUser='user',
-        authPass='pass',
-        searchField="original.edgengram"
+        # suggestions=[], 
+        # authUser='user',
+        # authPass='pass',
+        searchField="autocomplete",
+        inputType="textarea",
 
     ),
     html.Div(id='output')

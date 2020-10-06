@@ -134,6 +134,17 @@
           "computed": false
         }
       },
+      "inputType": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The type of input element",
+        "defaultValue": {
+          "value": "\"input\"",
+          "computed": false
+        }
+      },
       "setProps": {
         "type": {
           "name": "func"

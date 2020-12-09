@@ -4772,10 +4772,10 @@ var Autocomplete = /*#__PURE__*/function (_Component) {
       var source = suggestion._source;
       var prefix = "";
 
-      if (this.state.value.includes(", ")) {
-        prefix = this.state.value.substring(0, this.state.value.lastIndexOf(", ") + 2);
-      } else if (this.state.value.includes("\n")) {
+      if (this.state.value.includes("\n")) {
         prefix = this.state.value.substring(0, this.state.value.lastIndexOf("\n") + 1);
+      } else if (this.state.value.includes(", ")) {
+        prefix = this.state.value.substring(0, this.state.value.lastIndexOf(", ") + 2);
       } else {
         prefix = "";
       } // this.props.setProps({lastValueMeta: suggestion});
@@ -4811,9 +4811,9 @@ var Autocomplete = /*#__PURE__*/function (_Component) {
 
       var renderInputComponent = function renderInputComponent(inputProps) {
         if (inputType === "input") {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", inputProps));
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", inputProps);
         } else {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", inputProps));
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", inputProps);
         }
       }; // console.log(renderInputComponent)
 
